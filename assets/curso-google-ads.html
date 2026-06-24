@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Google Ads Mastery — Curso Completo · TuMundoAds</title>
+<style>
+:root{
+  --orange:#E8821A;--orange-light:#FFF4EA;--orange-border:#FDDBB4;
+  --black:#111;--gray-dark:#444;--gray-mid:#888;--gray-light:#F5F5F3;
+  --gray-border:#E8E8E4;--white:#fff;--green:#22C55E;--red:#EF4444;
+  --radius:10px;--radius-lg:16px;--radius-pill:999px;
+  --font:'Inter',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--gray-light);color:var(--black);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--orange);text-decoration:none}
+
+/* HEADER */
+.header{background:var(--black);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.header__brand{font-size:1rem;font-weight:800;color:#fff;letter-spacing:0.05em}
+.header__brand span{color:var(--orange)}
+.header__progress-wrap{display:flex;align-items:center;gap:1rem}
+.header__progress-bar{width:200px;height:8px;background:#333;border-radius:99px;overflow:hidden}
+.header__progress-fill{height:100%;background:var(--orange);border-radius:99px;transition:width 0.4s ease;width:0%}
+.header__progress-label{font-size:0.78rem;color:#aaa;white-space:nowrap}
+
+/* HERO */
+.hero{background:var(--black);padding:4rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:var(--gray-light);clip-path:ellipse(55% 100% at 50% 100%)}
+.hero__tag{display:inline-block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--orange);background:rgba(232,130,26,0.12);border:1px solid var(--orange);border-radius:var(--radius-pill);padding:0.35rem 1rem;margin-bottom:1.25rem}
+.hero__title{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:0.75rem}
+.hero__title span{color:var(--orange)}
+.hero__sub{font-size:1.05rem;color:#aaa;max-width:560px;margin:0 auto 2rem}
+.hero__chips{display:flex;justify-content:center;flex-wrap:wrap;gap:0.6rem}
+.hero__chip{font-size:0.8rem;font-weight:600;color:#ccc;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:var(--radius-pill);padding:0.4rem 0.9rem}
+
+/* MAIN LAYOUT */
+.main{max-width:900px;margin:0 auto;padding:3rem 1.5rem 6rem}
+
+/* MODULE CARD */
+.module{background:var(--white);border:1px solid var(--gray-border);border-radius:var(--radius-lg);margin-bottom:2rem;overflow:hidden;transition:box-shadow 0.2s}
+.module:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+.module__header{padding:1.5rem 2rem;display:flex;align-items:flex-start;gap:1.25rem;cursor:pointer;user-select:none}
+.module__num{min-width:44px;height:44px;border-radius:var(--radius);background:var(--orange-light);border:1.5px solid var(--orange-border);color:var(--orange);font-size:0.85rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.module__meta{flex:1}
+.module__title{font-size:1.1rem;font-weight:800;color:var(--black);margin-bottom:0.2rem}
+.module__desc{font-size:0.88rem;color:var(--gray-mid)}
+.module__chevron{font-size:1.2rem;color:var(--gray-mid);transition:transform 0.2s;margin-top:2px}
+.module__chevron.open{transform:rotate(180deg)}
+.module__status{font-size:0.72rem;font-weight:700;padding:0.25rem 0.7rem;border-radius:var(--radius-pill);white-space:nowrap;margin-top:4px}
+.module__status--pending{background:var(--gray-light);color:var(--gray-mid)}
+.module__status--done{background:#DCFCE7;color:#166534}
+
+/* MODULE BODY */
+.module__body{display:none;border-top:1px solid var(--gray-border)}
+.module__body.open{display:block}
+.module__content{padding:2rem;border-bottom:1px solid var(--gray-border)}
+.module__content h3{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--orange);margin-bottom:1rem}
+.module__content p{font-size:0.92rem;color:var(--gray-dark);line-height:1.75;margin-bottom:0.75rem}
+.module__content ul{padding-left:1.25rem;margin-bottom:0.75rem}
+.module__content li{font-size:0.9rem;color:var(--gray-dark);line-height:1.7;margin-bottom:0.3rem}
+.module__content strong{color:var(--black)}
+.tip{background:var(--orange-light);border-left:3px solid var(--orange);border-radius:0 var(--radius) var(--radius) 0;padding:1rem 1.25rem;margin:1rem 0;font-size:0.88rem;color:var(--gray-dark)}
+.tip strong{color:var(--orange)}
+
+/* QUIZ */
+.quiz{padding:2rem}
+.quiz__title{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--black);margin-bottom:1.5rem}
+.question{margin-bottom:1.75rem}
+.question__text{font-size:0.95rem;font-weight:600;color:var(--black);margin-bottom:0.9rem;line-height:1.5}
+.question__num{color:var(--orange)}
+.options{display:flex;flex-direction:column;gap:0.5rem}
+.option{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;border:1.5px solid var(--gray-border);border-radius:var(--radius);cursor:pointer;transition:border-color 0.15s,background 0.15s;font-size:0.9rem;color:var(--gray-dark)}
+.option:hover{border-color:var(--orange);background:var(--orange-light)}
+.option input{accent-color:var(--orange);width:16px;height:16px;flex-shrink:0}
+.option.correct{border-color:var(--green);background:#F0FDF4;color:#166534}
+.option.wrong{border-color:var(--red);background:#FEF2F2;color:#991B1B}
+.quiz__btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--orange);color:#fff;border:none;padding:0.85rem 1.75rem;border-radius:var(--radius-pill);font-family:var(--font);font-weight:700;font-size:0.92rem;cursor:pointer;transition:background 0.15s,transform 0.15s;margin-top:0.5rem}
+.quiz__btn:hover{background:#cf6f10;transform:translateY(-1px)}
+.quiz__btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.quiz__result{margin-top:1.25rem;padding:1rem 1.25rem;border-radius:var(--radius);font-size:0.9rem;font-weight:600;display:none}
+.quiz__result.pass{background:#DCFCE7;color:#166534;border:1px solid #86EFAC}
+.quiz__result.fail{background:#FEF2F2;color:#991B1B;border:1px solid #FCA5A5}
+
+/* FINAL SECTION */
+.final{background:var(--white);border:1px solid var(--gray-border);border-radius:var(--radius-lg);padding:3rem 2rem;text-align:center;margin-top:3rem}
+.final__icon{font-size:3rem;margin-bottom:1rem}
+.final__title{font-size:1.6rem;font-weight:800;color:var(--black);margin-bottom:0.75rem}
+.final__sub{font-size:1rem;color:var(--gray-dark);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+.final__score{display:inline-block;font-size:2.5rem;font-weight:800;color:var(--orange);margin-bottom:0.5rem}
+.final__score-label{font-size:0.85rem;color:var(--gray-mid);margin-bottom:2rem}
+.final__btn{display:inline-flex;align-items:center;gap:0.6rem;background:var(--black);color:#fff;border:none;padding:1rem 2.25rem;border-radius:var(--radius-pill);font-family:var(--font);font-weight:700;font-size:1rem;cursor:pointer;transition:background 0.15s,transform 0.15s;text-decoration:none}
+.final__btn:hover{background:#333;transform:translateY(-2px)}
+.final__btn--green{background:var(--green);color:#fff}
+.final__btn--green:hover{background:#16a34a}
+
+/* CERTIFICATE */
+#certCanvas{display:none;border:1px solid var(--gray-border);border-radius:var(--radius);max-width:100%;margin:2rem auto 0}
+
+/* NAME INPUT */
+.name-input-wrap{margin-bottom:2rem;text-align:left;max-width:400px;margin-left:auto;margin-right:auto}
+.name-input-wrap label{display:block;font-size:0.82rem;font-weight:700;color:var(--gray-dark);margin-bottom:0.5rem}
+.name-input-wrap input{width:100%;padding:0.75rem 1rem;border:1.5px solid var(--gray-border);border-radius:var(--radius);font-family:var(--font);font-size:0.95rem;color:var(--black);outline:none;transition:border-color 0.15s}
+.name-input-wrap input:focus{border-color:var(--orange)}
+
+@media(max-width:600px){
+  .header{flex-direction:column;gap:0.75rem;align-items:flex-start}
+  .header__progress-bar{width:140px}
+  .module__header{padding:1rem 1.25rem}
+  .module__content,.quiz{padding:1.25rem}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__brand">tumundo<span>ads</span></div>
+  <div class="header__progress-wrap">
+    <div class="header__progress-bar"><div class="header__progress-fill" id="progressFill"></div></div>
+    <span class="header__progress-label" id="progressLabel">0 / 7 módulos</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero__tag">Curso certificado · TuMundoAds</div>
+  <h1 class="hero__title">Google Ads <span>Mastery</span></h1>
+  <p class="hero__sub">Estrategia, Configuración y Optimización Profesional. Completá los 7 módulos y obtené tu certificado.</p>
+  <div class="hero__chips">
+    <span class="hero__chip">📊 Búsqueda & Display</span>
+    <span class="hero__chip">▶️ YouTube Ads</span>
+    <span class="hero__chip">🛒 Shopping</span>
+    <span class="hero__chip">⚡ Performance Max</span>
+    <span class="hero__chip">💰 Presupuestos</span>
+    <span class="hero__chip">📋 Políticas</span>
+    <span class="hero__chip">🎯 Casos Prácticos</span>
+  </div>
+</section>
+
+<main class="main">
+
+<!-- MÓDULO 1 -->
+<div class="module" id="mod1">
+  <div class="module__header" onclick="toggleModule(1)">
+    <div class="module__num">01</div>
+    <div class="module__meta">
+      <div class="module__title">Configuración Inicial e Integración Técnica</div>
+      <div class="module__desc">Píxeles, GA4 y seguimiento de conversiones</div>
+      <span class="module__status module__status--pending" id="status1">Pendiente</span>
+    </div>
+    <div class="module__chevron" id="chevron1">▼</div>
+  </div>
+  <div class="module__body" id="body1">
+    <div class="module__content">
+      <h3>Contenido del módulo</h3>
+      <p>La base técnica es el cimiento de cualquier campaña exitosa. Antes de invertir presupuesto publicitario, debes asegurarte de que el entorno de medición esté correctamente configurado.</p>
+      <ul>
+        <li><strong>Vinculación de Cuentas:</strong> Proceso para enlazar Google Ads con Google Analytics 4 (GA4), asegurando el flujo correcto de datos y la sincronización de audiencias personalizadas.</li>
+        <li><strong>Configuración del Píxel:</strong> Implementación técnica de eventos clave mediante etiquetas de conversión para nutrir los algoritmos de puja inteligente (Smart Bidding).</li>
+        <li><strong>E-commerce:</strong> Compras directas (evento purchase), inicios de checkout y adición al carrito.</li>
+        <li><strong>Generación de Leads:</strong> Registros exitosos en formularios de contacto, descargas de catálogos y suscripciones corporativas.</li>
+        <li><strong>Acciones de Contacto:</strong> Clics medibles en botones de WhatsApp o enlaces telefónicos.</li>
+      </ul>
+      <div class="tip"><strong>Regla de Oro del Algoritmo:</strong> Sin un píxel correctamente configurado y verificado, las estrategias de puja inteligente optimizarán hacia tráfico accidental en lugar de acciones de alto valor comercial.</div>
+    </div>
+    <div class="quiz">
+      <div class="quiz__title">✏️ Evaluación — Módulo 1</div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">1.</span> ¿Cuál es el principal objetivo de vincular Google Ads con Google Analytics 4 (GA4)?</div>
+        <div class="options" id="q1">
+          <label class="option"><input type="radio" name="q1" value="a"> Aumentar el presupuesto de la campaña automáticamente</label>
+          <label class="option"><input type="radio" name="q1" value="b"> Asegurar el flujo correcto de datos y la sincronización de audiencias personalizadas</label>
+          <label class="option"><input type="radio" name="q1" value="c"> Desactivar las campañas de Display de forma automática</label>
+          <label class="option"><input type="radio" name="q1" value="d"> Generar reportes de redes sociales</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">2.</span> ¿Qué sucede si el píxel de conversiones no está correctamente configurado?</div>
+        <div class="options" id="q2">
+          <label class="option"><input type="radio" name="q2" value="a"> Las campañas se pausan automáticamente</label>
+          <label class="option"><input type="radio" name="q2" value="b"> El presupuesto se duplica</label>
+          <label class="option"><input type="radio" name="q2" value="c"> El algoritmo de Smart Bidding optimizará hacia tráfico accidental o rebote masivo</label>
+          <label class="option"><input type="radio" name="q2" value="d"> Los anuncios solo aparecen en móviles</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">3.</span> ¿Cuál de estos es un ejemplo de "Acción de Contacto" medible en Google Ads?</div>
+        <div class="options" id="q3">
+          <label class="option"><input type="radio" name="q3" value="a"> Una visita orgánica al sitio web</label>
+          <label class="option"><input type="radio" name="q3" value="b"> Un clic en un botón flotante de WhatsApp o enlace telefónico</label>
+          <label class="option"><input type="radio" name="q3" value="c"> Una impresión de un banner de Display</label>
+          <label class="option"><input type="radio" name="q3" value="d"> La cantidad de seguidores en redes sociales</label>
+        </div>
+      </div>
+      <button class="quiz__btn" onclick="checkModule(1)" id="btn1">Verificar respuestas</button>
+      <div class="quiz__result" id="result1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MÓDULO 2 -->
+<div class="module" id="mod2">
+  <div class="module__header" onclick="toggleModule(2)">
+    <div class="module__num">02</div>
+    <div class="module__meta">
+      <div class="module__title">Guía de Configuración por Tipo de Campaña</div>
+      <div class="module__desc">Búsqueda, Display, YouTube, Shopping y Demand Gen</div>
+      <span class="module__status module__status--pending" id="status2">Pendiente</span>
+    </div>
+    <div class="module__chevron" id="chevron2">▼</div>
+  </div>
+  <div class="module__body" id="body2">
+    <div class="module__content">
+      <h3>Contenido del módulo</h3>
+      <p><strong>Red de Búsqueda (Search):</strong> Captura la intención de compra directa. Al crear la campaña, se debe desmarcar explícitamente la opción de "Red de Display de Google" para evitar que el presupuesto se diluya.</p>
+      <p><strong>Segmentación Geográfica:</strong> Seleccionar siempre "Presencia" (no "Interés") para evitar que usuarios de otras regiones consuman el presupuesto local.</p>
+      <p><strong>Red de Display:</strong> Ideal para branding y Retargeting. Aplicar exclusiones de aplicaciones móviles para proteger el presupuesto de clics accidentales.</p>
+      <p><strong>YouTube Ads:</strong> In-stream saltables (cobro a los 30s), no saltables (15s forzados) y Bumper Ads (6s). Siempre incluir una CTA visible superpuesta al video.</p>
+      <p><strong>Shopping:</strong> Requiere Google Merchant Center vinculado. El título del producto es clave — usar títulos hiperdescriptivos (ej: "Zapatilla Running Negra Hombre Nike Modelo X").</p>
+      <div class="tip"><strong>Acción Crítica:</strong> Para campañas de Búsqueda pura, siempre DESMARCAR "Red de Display de Google". Mantenerla activa diluye el presupuesto en portales externos de baja conversión.</div>
+    </div>
+    <div class="quiz">
+      <div class="quiz__title">✏️ Evaluación — Módulo 2</div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">4.</span> Al crear una campaña de Búsqueda pura, ¿qué opción debés DESMARCAR obligatoriamente?</div>
+        <div class="options" id="q4">
+          <label class="option"><input type="radio" name="q4" value="a"> Red de Búsqueda de Google</label>
+          <label class="option"><input type="radio" name="q4" value="b"> Red de Display de Google</label>
+          <label class="option"><input type="radio" name="q4" value="c"> Segmentación geográfica</label>
+          <label class="option"><input type="radio" name="q4" value="d"> Extensiones de anuncio</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">5.</span> ¿Cuál es la diferencia entre los anuncios In-stream saltables y los no saltables en YouTube?</div>
+        <div class="options" id="q5">
+          <label class="option"><input type="radio" name="q5" value="a"> Los saltables duran 6 segundos; los no saltables, 30 segundos</label>
+          <label class="option"><input type="radio" name="q5" value="b"> Los saltables permiten saltar tras 5 segundos y solo se cobran si el usuario ve 30s; los no saltables son mensajes forzados de 15 segundos</label>
+          <label class="option"><input type="radio" name="q5" value="c"> No existe diferencia técnica entre ambos formatos</label>
+          <label class="option"><input type="radio" name="q5" value="d"> Los saltables son exclusivos para móviles</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">6.</span> ¿Por qué es importante usar títulos hiperdescriptivos en campañas de Shopping?</div>
+        <div class="options" id="q6">
+          <label class="option"><input type="radio" name="q6" value="a"> Para reducir el presupuesto diario de la campaña</label>
+          <label class="option"><input type="radio" name="q6" value="b"> Porque el título del producto determina en qué subastas se activa el anuncio</label>
+          <label class="option"><input type="radio" name="q6" value="c"> Para aparecer en la Red de Display automáticamente</label>
+          <label class="option"><input type="radio" name="q6" value="d"> Porque Google Merchant Center los requiere como campo obligatorio único</label>
+        </div>
+      </div>
+      <button class="quiz__btn" onclick="checkModule(2)" id="btn2">Verificar respuestas</button>
+      <div class="quiz__result" id="result2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MÓDULO 3 -->
+<div class="module" id="mod3">
+  <div class="module__header" onclick="toggleModule(3)">
+    <div class="module__num">03</div>
+    <div class="module__meta">
+      <div class="module__title">Campañas Performance Max</div>
+      <div class="module__desc">Máximo rendimiento con IA en todos los canales</div>
+      <span class="module__status module__status--pending" id="status3">Pendiente</span>
+    </div>
+    <div class="module__chevron" id="chevron3">▼</div>
+  </div>
+  <div class="module__body" id="body3">
+    <div class="module__content">
+      <h3>Contenido del módulo</h3>
+      <p>Las campañas Performance Max (PMax) representan la evolución de la pauta en Google, utilizando inteligencia artificial para distribuir anuncios en toda la red simultáneamente desde una sola estructura.</p>
+      <p><strong>Estructura:</strong> Una sola campaña PMax cubre Búsqueda → YouTube → Display → Maps / Gmail / Discover simultáneamente.</p>
+      <ul>
+        <li><strong>Imágenes:</strong> Alta resolución en múltiples ángulos, lifestyle y variaciones horizontal/cuadrado.</li>
+        <li><strong>Logotipos:</strong> Archivos en alta definición con fondos transparentes.</li>
+        <li><strong>Videos:</strong> Mínimo un video profesional en horizontal y vertical (Shorts). Sin video, Google genera uno automático de baja calidad.</li>
+      </ul>
+      <p><strong>Redacción Eficaz:</strong> Mensajes directos — el usuario debe decodificar la propuesta de valor en los primeros 3 segundos. Priorizar beneficios sobre características técnicas.</p>
+      <div class="tip"><strong>Importante:</strong> De omitirse el video, Google compilará automáticamente uno con las imágenes estáticas, restando calidad y conversión al anuncio final.</div>
+    </div>
+    <div class="quiz">
+      <div class="quiz__title">✏️ Evaluación — Módulo 3</div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">7.</span> ¿Qué canales cubre una sola campaña Performance Max?</div>
+        <div class="options" id="q7">
+          <label class="option"><input type="radio" name="q7" value="a"> Solo Búsqueda y Display</label>
+          <label class="option"><input type="radio" name="q7" value="b"> Búsqueda, YouTube, Display, Maps, Gmail y Discover simultáneamente</label>
+          <label class="option"><input type="radio" name="q7" value="c"> Solo YouTube y Shopping</label>
+          <label class="option"><input type="radio" name="q7" value="d"> Solo redes sociales de Google</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">8.</span> ¿Qué ocurre si no se incluye un video en una campaña Performance Max?</div>
+        <div class="options" id="q8">
+          <label class="option"><input type="radio" name="q8" value="a"> La campaña no puede activarse</label>
+          <label class="option"><input type="radio" name="q8" value="b"> Google compilará automáticamente un video con las imágenes estáticas, restando calidad y conversión</label>
+          <label class="option"><input type="radio" name="q8" value="c"> El presupuesto se redirige exclusivamente a Búsqueda</label>
+          <label class="option"><input type="radio" name="q8" value="d"> No tiene ningún impacto en el rendimiento</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">9.</span> En redacción publicitaria para PMax, ¿cuánto tiempo tiene el usuario para decodificar la propuesta de valor?</div>
+        <div class="options" id="q9">
+          <label class="option"><input type="radio" name="q9" value="a"> 10 segundos</label>
+          <label class="option"><input type="radio" name="q9" value="b"> 30 segundos</label>
+          <label class="option"><input type="radio" name="q9" value="c"> Los primeros 3 segundos</label>
+          <label class="option"><input type="radio" name="q9" value="d"> 1 minuto completo</label>
+        </div>
+      </div>
+      <button class="quiz__btn" onclick="checkModule(3)" id="btn3">Verificar respuestas</button>
+      <div class="quiz__result" id="result3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MÓDULO 4 -->
+<div class="module" id="mod4">
+  <div class="module__header" onclick="toggleModule(4)">
+    <div class="module__num">04</div>
+    <div class="module__meta">
+      <div class="module__title">Gestión de Presupuestos y Estrategias de Puja</div>
+      <div class="module__desc">Smart Bidding, CPA, ROAS y planificación financiera</div>
+      <span class="module__status module__status--pending" id="status4">Pendiente</span>
+    </div>
+    <div class="module__chevron" id="chevron4">▼</div>
+  </div>
+  <div class="module__body" id="body4">
+    <div class="module__content">
+      <h3>Contenido del módulo</h3>
+      <p><strong>Presupuesto Diario Promedio:</strong> Calculado dividiendo el gasto mensual deseado entre 30.4 días. Google puede duplicar el gasto diario en días de alto tráfico, compensándolo en días de menor actividad.</p>
+      <p><strong>Estrategias de Puja Avanzadas (Smart Bidding):</strong></p>
+      <ul>
+        <li><strong>Maximizar Clics:</strong> Ideal para fases iniciales. Siempre establecer un límite de CPC máximo.</li>
+        <li><strong>Maximizar Conversiones:</strong> Para lanzamientos o cuentas sin historial robusto.</li>
+        <li><strong>CPA Objetivo:</strong> Establece un techo de costo por cliente. Funciona óptimamente con más de 30 conversiones estables al mes.</li>
+        <li><strong>ROAS Objetivo:</strong> Para Shopping maduras. Un ROAS del 400% implica generar $4 por cada $1 invertido.</li>
+      </ul>
+      <div class="tip"><strong>Error crítico:</strong> Dejar Maximizar Clics sin un límite de CPC máximo puede resultar en costos exorbitantes por clics individuales, agotando el presupuesto prematuramente.</div>
+    </div>
+    <div class="quiz">
+      <div class="quiz__title">✏️ Evaluación — Módulo 4</div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">10.</span> ¿Cuántas conversiones estables mensuales se necesitan para que el CPA Objetivo funcione óptimamente?</div>
+        <div class="options" id="q10">
+          <label class="option"><input type="radio" name="q10" value="a"> Más de 5 conversiones</label>
+          <label class="option"><input type="radio" name="q10" value="b"> Más de 30 conversiones</label>
+          <label class="option"><input type="radio" name="q10" value="c"> Más de 100 conversiones</label>
+          <label class="option"><input type="radio" name="q10" value="d"> No tiene requisito mínimo</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">11.</span> Un ROAS objetivo del 400% significa que por cada $1 invertido se generan:</div>
+        <div class="options" id="q11">
+          <label class="option"><input type="radio" name="q11" value="a"> $1 en ingresos</label>
+          <label class="option"><input type="radio" name="q11" value="b"> $2 en ingresos</label>
+          <label class="option"><input type="radio" name="q11" value="c"> $4 en ingresos</label>
+          <label class="option"><input type="radio" name="q11" value="d"> $400 en ingresos</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">12.</span> ¿Por qué es crítico establecer un límite de CPC máximo en la estrategia "Maximizar Clics"?</div>
+        <div class="options" id="q12">
+          <label class="option"><input type="radio" name="q12" value="a"> Para aumentar la cantidad de impresiones del anuncio</label>
+          <label class="option"><input type="radio" name="q12" value="b"> Para evitar que el algoritmo pague costos exorbitantes por clics individuales y agote el presupuesto</label>
+          <label class="option"><input type="radio" name="q12" value="c"> Para que la campaña aparezca solo en la Red de Búsqueda</label>
+          <label class="option"><input type="radio" name="q12" value="d"> Porque Google lo exige como campo obligatorio</label>
+        </div>
+      </div>
+      <button class="quiz__btn" onclick="checkModule(4)" id="btn4">Verificar respuestas</button>
+      <div class="quiz__result" id="result4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MÓDULO 5 -->
+<div class="module" id="mod5">
+  <div class="module__header" onclick="toggleModule(5)">
+    <div class="module__num">05</div>
+    <div class="module__meta">
+      <div class="module__title">Recursos y Extensiones de Anuncios</div>
+      <div class="module__desc">Sitelinks, textos destacados y formularios de leads</div>
+      <span class="module__status module__status--pending" id="status5">Pendiente</span>
+    </div>
+    <div class="module__chevron" id="chevron5">▼</div>
+  </div>
+  <div class="module__body" id="body5">
+    <div class="module__content">
+      <h3>Contenido del módulo</h3>
+      <p>Los recursos amplían el tamaño real del anuncio en la Red de Búsqueda, mejoran el CTR y reducen el CPC al elevar el Quality Score (Nivel de Calidad) otorgado por Google.</p>
+      <ul>
+        <li><strong>Vínculos de Sitio (Sitelinks):</strong> Mínimo 4 enlaces a páginas internas relevantes (ej: "Preguntas Frecuentes", "Catálogo", "Casos de Éxito", "Contacto").</li>
+        <li><strong>Textos Destacados:</strong> Frases de hasta 25 caracteres que destacan ventajas competitivas (ej: "Soporte 24/7", "Garantía Oficial", "Envío Gratis").</li>
+        <li><strong>Recursos de Imagen:</strong> Fotografías cuadradas de alta calidad asociadas a la palabra clave del anuncio, humanizando el formato de texto.</li>
+        <li><strong>Formularios de Leads:</strong> Captura de datos directamente desde el buscador de Google, sin necesidad de navegar a la web externa.</li>
+      </ul>
+      <div class="tip"><strong>Beneficio clave:</strong> Los recursos no solo amplían el anuncio visualmente — elevan directamente el Quality Score, lo que reduce el costo por clic en las subastas.</div>
+    </div>
+    <div class="quiz">
+      <div class="quiz__title">✏️ Evaluación — Módulo 5</div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">13.</span> ¿Cuál es el beneficio principal de agregar recursos (extensiones) a un anuncio de Búsqueda?</div>
+        <div class="options" id="q13">
+          <label class="option"><input type="radio" name="q13" value="a"> Aumentar el presupuesto diario automáticamente</label>
+          <label class="option"><input type="radio" name="q13" value="b"> Ampliar el espacio del anuncio, mejorar el CTR y reducir el CPC al elevar el Quality Score</label>
+          <label class="option"><input type="radio" name="q13" value="c"> Activar las campañas en la Red de Display</label>
+          <label class="option"><input type="radio" name="q13" value="d"> Segmentar el anuncio por dispositivo automáticamente</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">14.</span> ¿Cuántos Vínculos de Sitio (Sitelinks) se recomienda configurar como mínimo?</div>
+        <div class="options" id="q14">
+          <label class="option"><input type="radio" name="q14" value="a"> 1 enlace</label>
+          <label class="option"><input type="radio" name="q14" value="b"> 2 enlaces</label>
+          <label class="option"><input type="radio" name="q14" value="c"> 4 enlaces</label>
+          <label class="option"><input type="radio" name="q14" value="d"> 10 enlaces</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">15.</span> ¿Qué longitud máxima tienen los Textos Destacados en Google Ads?</div>
+        <div class="options" id="q15">
+          <label class="option"><input type="radio" name="q15" value="a"> 10 caracteres</label>
+          <label class="option"><input type="radio" name="q15" value="b"> 25 caracteres</label>
+          <label class="option"><input type="radio" name="q15" value="c"> 90 caracteres</label>
+          <label class="option"><input type="radio" name="q15" value="d"> 150 caracteres</label>
+        </div>
+      </div>
+      <button class="quiz__btn" onclick="checkModule(5)" id="btn5">Verificar respuestas</button>
+      <div class="quiz__result" id="result5"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MÓDULO 6 -->
+<div class="module" id="mod6">
+  <div class="module__header" onclick="toggleModule(6)">
+    <div class="module__num">06</div>
+    <div class="module__meta">
+      <div class="module__title">Cumplimiento de Políticas de Publicidad</div>
+      <div class="module__desc">Restricciones, marcas registradas y verificación</div>
+      <span class="module__status module__status--pending" id="status6">Pendiente</span>
+    </div>
+    <div class="module__chevron" id="chevron6">▼</div>
+  </div>
+  <div class="module__body" id="body6">
+    <div class="module__content">
+      <h3>Contenido del módulo</h3>
+      <p>El desconocimiento de las políticas de Google Ads puede provocar el rechazo sistemático de anuncios o la suspensión definitiva de la cuenta.</p>
+      <ul>
+        <li><strong>Marcas Registradas:</strong> Prohibido usar nombres de marcas de la competencia en textos de anuncios si el propietario registró una queja formal ante Google.</li>
+        <li><strong>Prácticas Engañosas:</strong> Prohibido prometer resultados irrealizables o publicar precios que no coincidan con la landing page de destino.</li>
+        <li><strong>Salud y Medicamentos:</strong> Restricciones severas sobre suplementos alimenticios y tratamientos de salud según cada territorio.</li>
+        <li><strong>Verificación del Anunciante:</strong> Obligatorio subir documentación fiscal oficial en los plazos estipulados para evitar el congelamiento de la entrega de anuncios.</li>
+      </ul>
+      <div class="tip"><strong>Consecuencia crítica:</strong> La suspensión de una cuenta publicitaria puede ser definitiva e impactar también al Merchant Center vinculado. El cumplimiento preventivo es esencial.</div>
+    </div>
+    <div class="quiz">
+      <div class="quiz__title">✏️ Evaluación — Módulo 6</div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">16.</span> ¿Qué consecuencia puede tener el incumplimiento de las políticas de Google Ads?</div>
+        <div class="options" id="q16">
+          <label class="option"><input type="radio" name="q16" value="a"> Solo una reducción temporal del presupuesto</label>
+          <label class="option"><input type="radio" name="q16" value="b"> El rechazo de anuncios o la suspensión definitiva de la cuenta publicitaria</label>
+          <label class="option"><input type="radio" name="q16" value="c"> Un aumento automático del CPC</label>
+          <label class="option"><input type="radio" name="q16" value="d"> La desactivación del píxel de conversiones</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">17.</span> ¿Cuándo está prohibido usar el nombre de una marca registrada de la competencia en tus anuncios?</div>
+        <div class="options" id="q17">
+          <label class="option"><input type="radio" name="q17" value="a"> Siempre está permitido si se usa para comparación</label>
+          <label class="option"><input type="radio" name="q17" value="b"> Cuando el propietario legítimo ha registrado una queja formal ante Google</label>
+          <label class="option"><input type="radio" name="q17" value="c"> Solo en campañas de Display</label>
+          <label class="option"><input type="radio" name="q17" value="d"> Únicamente en campañas de Shopping</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">18.</span> ¿Qué es la "Verificación del Anunciante" en Google Ads?</div>
+        <div class="options" id="q18">
+          <label class="option"><input type="radio" name="q18" value="a"> Un proceso para verificar que los anuncios tienen diseño correcto</label>
+          <label class="option"><input type="radio" name="q18" value="b"> La obligatoriedad de subir documentación fiscal oficial en los plazos estipulados para evitar el congelamiento de anuncios</label>
+          <label class="option"><input type="radio" name="q18" value="c"> Un test de conocimiento que Google exige anualmente</label>
+          <label class="option"><input type="radio" name="q18" value="d"> La confirmación del método de pago de la cuenta</label>
+        </div>
+      </div>
+      <button class="quiz__btn" onclick="checkModule(6)" id="btn6">Verificar respuestas</button>
+      <div class="quiz__result" id="result6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MÓDULO 7 -->
+<div class="module" id="mod7">
+  <div class="module__header" onclick="toggleModule(7)">
+    <div class="module__num">07</div>
+    <div class="module__meta">
+      <div class="module__title">Casos Prácticos de Aplicación Real</div>
+      <div class="module__desc">E-commerce B2C y captación de leads B2B</div>
+      <span class="module__status module__status--pending" id="status7">Pendiente</span>
+    </div>
+    <div class="module__chevron" id="chevron7">▼</div>
+  </div>
+  <div class="module__body" id="body7">
+    <div class="module__content">
+      <h3>Contenido del módulo</h3>
+      <p><strong>Caso 1 — E-commerce B2C con bajo retorno:</strong> Tienda de calzado con ROAS del 110% y CPC insostenible.</p>
+      <ul>
+        <li>Migración a Performance Max + Shopping Estándar con feed optimizado desde Google Merchant Center.</li>
+        <li>Enriquecimiento del feed: títulos hiperdescriptivos con marca, modelo y características.</li>
+        <li>Puja basada en ROAS Objetivo del 250% inicial.</li>
+        <li><strong>Resultado:</strong> ROAS del 340% y reducción de clics accidentales.</li>
+      </ul>
+      <p><strong>Caso 2 — Captación de leads cualificados B2B:</strong> Agencia de software con leads de baja calidad.</p>
+      <ul>
+        <li>Implementación de Enhanced Conversions en GA4 para calificar el perfil real del usuario.</li>
+        <li>Limpieza de palabras clave: transición a concordancia exacta + lista de negativos (ej: "gratis", "empleo", "curso").</li>
+        <li>Rediseño de anuncios: posición fija 1 para calificar desde el texto: "Software ERP para Medianas Empresas".</li>
+        <li><strong>Resultado:</strong> −40% en leads basura y +65% en tasa de cierre comercial.</li>
+      </ul>
+      <div class="tip"><strong>Control de Calidad en GA4:</strong> Auditar semanalmente la Tasa de Interacción (Engagement Rate). Si con alto volumen de clics la tasa es menor al 40%, se está atrayendo tráfico accidental.</div>
+    </div>
+    <div class="quiz">
+      <div class="quiz__title">✏️ Evaluación — Módulo 7</div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">19.</span> En el Caso Práctico 1, ¿qué estrategia de puja se implementó inicialmente para mejorar el ROAS de la tienda de calzado?</div>
+        <div class="options" id="q19">
+          <label class="option"><input type="radio" name="q19" value="a"> CPA Objetivo de $12 USD</label>
+          <label class="option"><input type="radio" name="q19" value="b"> ROAS Objetivo fijado inicialmente en 250%</label>
+          <label class="option"><input type="radio" name="q19" value="c"> Maximizar Clics sin límite de CPC</label>
+          <label class="option"><input type="radio" name="q19" value="d"> Maximizar Conversiones sin ROAS objetivo</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">20.</span> En el Caso Práctico 2 (B2B), ¿qué palabras se incluyeron en la lista de negativos para mejorar la calidad de los leads?</div>
+        <div class="options" id="q20">
+          <label class="option"><input type="radio" name="q20" value="a"> "comprar", "precio", "oferta"</label>
+          <label class="option"><input type="radio" name="q20" value="b"> "gratis", "empleo", "curso"</label>
+          <label class="option"><input type="radio" name="q20" value="c"> "software", "empresa", "contrato"</label>
+          <label class="option"><input type="radio" name="q20" value="d"> "descarga", "manual", "guía"</label>
+        </div>
+      </div>
+      <div class="question">
+        <div class="question__text"><span class="question__num">21.</span> ¿Qué indica una Tasa de Interacción (Engagement Rate) menor al 40% en GA4 con alto volumen de clics?</div>
+        <div class="options" id="q21">
+          <label class="option"><input type="radio" name="q21" value="a"> Que la campaña está funcionando perfectamente</label>
+          <label class="option"><input type="radio" name="q21" value="b"> Que se está atrayendo tráfico accidental o rebote masivo</label>
+          <label class="option"><input type="radio" name="q21" value="c"> Que el presupuesto es insuficiente</label>
+          <label class="option"><input type="radio" name="q21" value="d"> Que los anuncios necesitan más extensiones</label>
+        </div>
+      </div>
+      <button class="quiz__btn" onclick="checkModule(7)" id="btn7">Verificar respuestas</button>
+      <div class="quiz__result" id="result7"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN FINAL -->
+<div class="final" id="finalSection" style="display:none">
+  <div class="final__icon" id="finalIcon">🎯</div>
+  <h2 class="final__title" id="finalTitle">¡Curso completado!</h2>
+  <div class="final__score" id="finalScore">0%</div>
+  <div class="final__score-label" id="finalScoreLabel">de respuestas correctas</div>
+  <p class="final__sub" id="finalMsg"></p>
+  <div class="name-input-wrap" id="nameWrap" style="display:none">
+    <label for="studentName">Tu nombre completo (aparecerá en el certificado)</label>
+    <input type="text" id="studentName" placeholder="Ej: María González" maxlength="60"/>
+  </div>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <button class="final__btn final__btn--green" id="certBtn" style="display:none" onclick="generateCertificate()">
+      🎓 Descargar Certificado
+    </button>
+    <button class="final__btn" onclick="retryAll()" id="retryBtn" style="display:none">
+      🔄 Reintentar curso
+    </button>
+  </div>
+  <canvas id="certCanvas" width="1200" height="848"></canvas>
+</div>
+
+</main>
+
+<script>
+// ================================================================
+// RESPUESTAS CORRECTAS
+// ================================================================
+const ANSWERS = {
+  q1:'b', q2:'c', q3:'b',      // Módulo 1
+  q4:'b', q5:'b', q6:'b',      // Módulo 2
+  q7:'b', q8:'b', q9:'c',      // Módulo 3
+  q10:'b', q11:'c', q12:'b',   // Módulo 4
+  q13:'b', q14:'c', q15:'b',   // Módulo 5
+  q16:'b', q17:'b', q18:'b',   // Módulo 6
+  q19:'b', q20:'b', q21:'b'    // Módulo 7
+};
+
+const MODULE_QUESTIONS = {
+  1:['q1','q2','q3'],
+  2:['q4','q5','q6'],
+  3:['q7','q8','q9'],
+  4:['q10','q11','q12'],
+  5:['q13','q14','q15'],
+  6:['q16','q17','q18'],
+  7:['q19','q20','q21']
+};
+
+let completed = {};
+let scores = {};
+
+function toggleModule(n){
+  const body = document.getElementById('body'+n);
+  const chevron = document.getElementById('chevron'+n);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+}
+
+function checkModule(n){
+  const qs = MODULE_QUESTIONS[n];
+  let correct = 0;
+  let allAnswered = true;
+
+  qs.forEach(qid => {
+    const sel = document.querySelector(`input[name="${qid}"]:checked`);
+    if(!sel){ allAnswered = false; return; }
+    const opts = document.querySelectorAll(`#${qid} .option`);
+    opts.forEach(opt => {
+      const input = opt.querySelector('input');
+      opt.classList.remove('correct','wrong');
+      if(input.value === ANSWERS[qid]){
+        opt.classList.add('correct');
+      } else if(input.checked){
+        opt.classList.add('wrong');
+      }
+      input.disabled = true;
+    });
+    if(sel.value === ANSWERS[qid]) correct++;
+  });
+
+  if(!allAnswered){
+    alert('Por favor respondé todas las preguntas del módulo antes de verificar.');
+    return;
+  }
+
+  document.getElementById('btn'+n).disabled = true;
+  scores[n] = correct;
+  completed[n] = true;
+
+  const result = document.getElementById('result'+n);
+  const pass = correct >= 2;
+  result.className = 'quiz__result ' + (pass ? 'pass' : 'fail');
+  result.style.display = 'block';
+  result.innerHTML = pass
+    ? `✅ ¡Muy bien! Respondiste ${correct}/3 correctamente en este módulo.`
+    : `❌ Respondiste ${correct}/3. Revisá el contenido del módulo y volvé a intentarlo.`;
+
+  const status = document.getElementById('status'+n);
+  status.textContent = pass ? '✓ Aprobado' : `${correct}/3 correctas`;
+  status.className = 'module__status ' + (pass ? 'module__status--done' : 'module__status--pending');
+
+  updateProgress();
+
+  if(Object.keys(completed).length === 7) showFinal();
+}
+
+function updateProgress(){
+  const done = Object.keys(completed).length;
+  const pct = Math.round((done/7)*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = `${done} / 7 módulos`;
+}
+
+function showFinal(){
+  const section = document.getElementById('finalSection');
+  section.style.display = 'block';
+  section.scrollIntoView({behavior:'smooth'});
+
+  let totalCorrect = 0;
+  Object.values(scores).forEach(s => totalCorrect += s);
+  const totalPct = Math.round((totalCorrect/21)*100);
+
+  document.getElementById('finalScore').textContent = totalPct+'%';
+
+  if(totalPct >= 70){
+    document.getElementById('finalIcon').textContent = '🏆';
+    document.getElementById('finalTitle').textContent = '¡Felicitaciones, aprobaste!';
+    document.getElementById('finalMsg').textContent = `Obtuviste ${totalCorrect}/21 respuestas correctas (${totalPct}%). ¡Superaste el umbral del 70%! Ingresá tu nombre para generar tu certificado oficial.`;
+    document.getElementById('nameWrap').style.display = 'block';
+    document.getElementById('certBtn').style.display = 'inline-flex';
+  } else {
+    document.getElementById('finalIcon').textContent = '📚';
+    document.getElementById('finalTitle').textContent = 'Necesitás repasar algunos módulos';
+    document.getElementById('finalMsg').textContent = `Obtuviste ${totalCorrect}/21 respuestas correctas (${totalPct}%). Necesitás al menos el 70% para obtener el certificado. ¡Revisá el contenido e intentalo de nuevo!`;
+    document.getElementById('retryBtn').style.display = 'inline-flex';
+  }
+}
+
+function retryAll(){
+  location.reload();
+}
+
+// ================================================================
+// GENERADOR DE CERTIFICADO
+// ================================================================
+function generateCertificate(){
+  const name = document.getElementById('studentName').value.trim();
+  if(!name){ alert('Por favor ingresá tu nombre completo para generar el certificado.'); return; }
+
+  let totalCorrect = 0;
+  Object.values(scores).forEach(s => totalCorrect += s);
+  const totalPct = Math.round((totalCorrect/21)*100);
+
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+  const certCode = 'TMA-GAM-' + now.getFullYear() + '-' + Math.random().toString(36).substr(2,8).toUpperCase();
+
+  const canvas = document.getElementById('certCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  // Fondo
+  ctx.fillStyle = '#0D0D0D';
+  ctx.fillRect(0,0,W,H);
+
+  // Borde exterior dorado
+  ctx.strokeStyle = '#E8821A';
+  ctx.lineWidth = 6;
+  ctx.strokeRect(30,30,W-60,H-60);
+
+  // Borde interior sutil
+  ctx.strokeStyle = 'rgba(232,130,26,0.25)';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(48,48,W-96,H-96);
+
+  // Franja superior decorativa
+  const grad = ctx.createLinearGradient(0,0,W,0);
+  grad.addColorStop(0,'rgba(232,130,26,0)');
+  grad.addColorStop(0.5,'rgba(232,130,26,0.18)');
+  grad.addColorStop(1,'rgba(232,130,26,0)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(48,48,W-96,8);
+
+  // Logo text tumundoads
+  ctx.font = 'bold 22px Arial';
+  ctx.fillStyle = '#fff';
+  ctx.textAlign = 'center';
+  ctx.fillText('tumundo', W/2 - 38, 108);
+  ctx.fillStyle = '#E8821A';
+  ctx.fillText('ads', W/2 + 44, 108);
+
+  // Línea separadora
+  ctx.strokeStyle = 'rgba(232,130,26,0.3)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(200,125); ctx.lineTo(W-200,125); ctx.stroke();
+
+  // "CERTIFICADO DE FINALIZACIÓN"
+  ctx.font = 'bold 13px Arial';
+  ctx.fillStyle = '#E8821A';
+  ctx.letterSpacing = '0.2em';
+  ctx.fillText('CERTIFICADO DE FINALIZACIÓN', W/2, 165);
+
+  // Nombre del curso
+  ctx.font = 'bold 42px Arial';
+  ctx.fillStyle = '#fff';
+  ctx.fillText('Google Ads Mastery', W/2, 240);
+
+  ctx.font = '18px Arial';
+  ctx.fillStyle = '#aaa';
+  ctx.fillText('Estrategia, Configuración y Optimización Profesional', W/2, 275);
+
+  // Texto "Se certifica que"
+  ctx.font = '16px Arial';
+  ctx.fillStyle = '#888';
+  ctx.fillText('Se certifica que', W/2, 340);
+
+  // Nombre del estudiante
+  ctx.font = 'bold 52px Arial';
+  ctx.fillStyle = '#fff';
+  ctx.fillText(name, W/2, 415);
+
+  // Línea bajo el nombre
+  const nameW = ctx.measureText(name).width;
+  ctx.strokeStyle = 'rgba(232,130,26,0.5)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(W/2 - nameW/2, 425);
+  ctx.lineTo(W/2 + nameW/2, 425);
+  ctx.stroke();
+
+  // Texto completó
+  ctx.font = '16px Arial';
+  ctx.fillStyle = '#aaa';
+  ctx.fillText('ha completado y aprobado satisfactoriamente el curso', W/2, 465);
+
+  // Score
+  ctx.font = 'bold 18px Arial';
+  ctx.fillStyle = '#E8821A';
+  ctx.fillText(`con un resultado de ${totalPct}% (${totalCorrect}/21 respuestas correctas)`, W/2, 500);
+
+  // Línea divisora
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(150,540); ctx.lineTo(W-150,540); ctx.stroke();
+
+  // Firma y fecha
+  ctx.font = 'bold 16px Arial';
+  ctx.fillStyle = '#fff';
+  ctx.textAlign = 'left';
+  ctx.fillText('Lucero González Guerrero', 160, 600);
+  ctx.font = '13px Arial';
+  ctx.fillStyle = '#888';
+  ctx.fillText('Especialista en Pauta Digital · TuMundoAds', 160, 622);
+
+  ctx.textAlign = 'right';
+  ctx.font = 'bold 16px Arial';
+  ctx.fillStyle = '#fff';
+  ctx.fillText(dateStr, W-160, 600);
+  ctx.font = '13px Arial';
+  ctx.fillStyle = '#888';
+  ctx.fillText('Fecha de emisión', W-160, 622);
+
+  // Código único
+  ctx.textAlign = 'center';
+  ctx.font = '11px Arial';
+  ctx.fillStyle = 'rgba(232,130,26,0.5)';
+  ctx.fillText(`Código de verificación: ${certCode}`, W/2, 660);
+
+  // Franja inferior
+  ctx.fillStyle = 'rgba(232,130,26,0.06)';
+  ctx.fillRect(48,H-96,W-96,8);
+
+  // Mostrar canvas y descargar
+  canvas.style.display = 'block';
+  canvas.scrollIntoView({behavior:'smooth'});
+
+  setTimeout(()=>{
+    const link = document.createElement('a');
+    link.download = `Certificado_GoogleAds_${name.replace(/\s+/g,'_')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }, 500);
+}
+</script>
+</body>
+</html>
