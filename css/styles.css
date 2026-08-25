@@ -1277,112 +1277,68 @@ strong { color: var(--black); }
 }
 
 /* ================================================================
-   MOBILE FIXES v2
-   ================================================================ */
-
-/* 1. BANNER INICIAL más grande en mobile */
-@media (max-width: 768px) {
-  /* El contenedor del iframe toma más altura visual */
-  .hero-img > div {
-    min-height: 220px !important;
-  }
-}
-
-/* 2. CARRUSEL IMÁGENES: imágenes más altas y visibles */
-@media (max-width: 768px) {
-  .carousel-inf__track img {
-    height: 240px !important;
-    width: auto !important;
-    min-width: 300px;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    flex-shrink: 0 !important;
-  }
-}
 
 /* ================================================================
-   MOBILE FIXES v3 — Foto adjunta
+   MOBILE FIXES FINAL
    ================================================================ */
 @media (max-width: 768px) {
 
-  /* NAV: logo más grande, línea más ajustada */
-  .nav { border-bottom: 1px solid var(--gray-border); }
-  .nav__inner {
-    padding: 0.4rem 0.9rem;
-    min-height: unset;
+  /* BANNER WEB: sin espacio extra debajo */
+  .hero-img {
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
   }
-  .nav__logo { height: 68px; }
 
-  /* BANNER HERO 2 y 4: ocupa todo el ancho sin márgenes */
+  /* BANNER HERO 2 y 4: ocupa todo el ancho, se ve grande */
   .banner2-link {
     display: block;
     width: 100%;
     margin: 0;
     padding: 0;
     line-height: 0;
+    font-size: 0;
   }
   .banner2-img {
-    width: 100%;
-    height: auto;
-    display: block;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    min-height: 200px;
     object-fit: cover;
-    min-height: 180px;
-  }
-
-  /* BANNER WEB: sin espacio vacío debajo */
-  .hero-img {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    line-height: 0;
-  }
-  .hero-img > div {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+    object-position: center;
   }
 }
 
 /* ================================================================
-   MOBILE FIXES v4 — espacio banner + banner2 bordes
+   MOBILE FIXES FINAL v5
    ================================================================ */
 @media (max-width: 768px) {
 
-  /* Eliminar espacio blanco entre banner web y cinta de logos */
+  /* Banner web: sin espacio ni margin */
   .hero-img {
     display: block;
-    line-height: 0;
-    font-size: 0;
-    margin: 0;
-    padding: 0;
-  }
-  .hero-img > div {
-    display: block;
-    line-height: 0;
-    font-size: 0;
     margin: 0 !important;
     padding: 0 !important;
-  }
-  .hero-img > div > iframe {
-    display: block;
-    margin: 0;
-    padding: 0;
+    line-height: 0 !important;
   }
 
-  /* Banner Hero 2 y 4: sin márgenes, hasta el borde */
+  /* Banner hero 2: ocupa todo el ancho hasta los bordes */
   .banner2-link {
     display: block;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    line-height: 0;
-    font-size: 0;
+    width: 100vw !important;
+    margin-left: calc(-1 * (100vw - 100%) / 2) !important;
+    margin-right: calc(-1 * (100vw - 100%) / 2) !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    overflow: hidden;
   }
   .banner2-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0;
-    padding: 0;
-    object-fit: cover;
+    width: 100vw !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }

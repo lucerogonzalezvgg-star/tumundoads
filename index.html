@@ -114,7 +114,7 @@
 
         <!-- BANNER HERO 1 — Web Banner Animado -->
     <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img">
-      <div style="position:relative;width:100%;height:400px;overflow:hidden;">
+      <div style="position:relative;width:100%;overflow:hidden;height:400px;" id="bannerContainer">
         <iframe src="assets/banner-web.html" scrolling="no" frameborder="0"
           style="position:absolute;top:0;left:0;width:1400px;height:400px;border:none;pointer-events:none;
                  transform-origin:top left;
@@ -127,23 +127,23 @@
         function scaleBanner(){
           var container = document.querySelector('.hero-img');
           var iframe = document.getElementById('bannerIframe');
-          if(!container || !iframe) return;
+          var box = document.getElementById('bannerContainer');
+          if(!container || !iframe || !box) return;
           var w = container.offsetWidth || window.innerWidth;
           var s = w / 1400;
-          // En mobile ampliamos la escala para que el banner se vea más grande
           if(w < 768){ s = s * 1.35; }
+          var h = Math.round(400 * s);
           iframe.style.transform = 'scale('+s+')';
           iframe.style.transformOrigin = 'top left';
           iframe.style.width = '1400px';
           iframe.style.height = '400px';
-          iframe.parentElement.style.height = Math.round(400 * s) + 'px';
-          iframe.parentElement.style.width = '100%';
-          iframe.parentElement.style.overflow = 'hidden';
-          iframe.parentElement.style.position = 'relative';
-          iframe.parentElement.style.margin = '0';
-          iframe.parentElement.style.padding = '0';
-          iframe.parentElement.style.lineHeight = '0';
-          iframe.parentElement.style.fontSize = '0';
+          box.style.height = h + 'px';
+          box.style.overflow = 'hidden';
+          box.style.margin = '0';
+          box.style.padding = '0';
+          box.style.display = 'block';
+          box.style.lineHeight = '0';
+          box.style.fontSize = '0';
         }
         if(document.readyState === 'loading'){
           document.addEventListener('DOMContentLoaded', scaleBanner);
@@ -239,7 +239,7 @@
 
     <!-- BANNER 2 — debajo de Por qué confiar en mí, redirige a WhatsApp -->
     <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Vi%20tu%20p%C3%A1gina%20y%20quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="banner2-link">
-      <img src="assets/banner-hero2.png" alt="TuMundoAds - Servicios de pauta digital" class="banner2-img"/>
+      <img src="assets/banner-hero2.png" alt="TuMundoAds - Servicios de pauta digital" class="banner2-img" style="width:100%;display:block;height:auto;"/>
     </a>
 
     <!-- CARRUSEL INFINITO SIN SALTOS -->
