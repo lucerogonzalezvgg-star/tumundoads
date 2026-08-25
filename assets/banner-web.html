@@ -92,6 +92,20 @@
   .tablet{ left:592px; top:60px; width:150px; z-index:3; }
   .tablet .scroll-clip{ left:4px; top:4px; width:142px; height:201px; border-radius:3px; }
   .tablet .scroll-track{ animation-name:scrollY; animation-duration:16s; --shift:-119px; }
+
+  /* MOBILE: el banner se ve escalado desde el padre, aquí solo ajustamos layout interno */
+  @media (max-width: 768px) {
+    /* Ocultar tablet para que no se corte */
+    .tablet { display: none; }
+    /* Agrandar monitor para que llene el espacio */
+    .monitor { left: 80px; top: 5px; width: 480px; z-index: 2; }
+    .monitor .scroll-clip { left: 13px; top: 13px; width: 452px; height: 238px; }
+    /* Reubicar teléfono */
+    .phone { left: 10px; top: 160px; width: 110px; z-index: 3; }
+    /* Texto más visible */
+    .text-col { flex: 0 0 380px; }
+    h1 { font-size: 28px; }
+  }
 </style>
 </head>
 <body>
