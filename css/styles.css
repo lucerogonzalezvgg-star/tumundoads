@@ -1275,3 +1275,28 @@ strong { color: var(--black); }
     letter-spacing: 0.03em;
   }
 }
+
+/* ================================================================
+   MOBILE FIXES v2
+   ================================================================ */
+
+/* 1. BANNER INICIAL más grande en mobile */
+@media (max-width: 768px) {
+  /* El contenedor del iframe toma más altura visual */
+  .hero-img > div {
+    min-height: 220px !important;
+  }
+}
+
+/* 2. CARRUSEL IMÁGENES: imágenes más altas y visibles */
+@media (max-width: 768px) {
+  .carousel-inf__track img {
+    height: 240px !important;
+    width: auto !important;
+    min-width: 300px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-shrink: 0 !important;
+  }
+}

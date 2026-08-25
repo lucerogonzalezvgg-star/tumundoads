@@ -7,7 +7,7 @@
   :root{
     --orange:#FF6600;
     --dark:#1a1a1a;
-    --bg:#fafafa;
+    --bg:#ffffff;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{width:1400px;height:400px;}
@@ -26,14 +26,7 @@
     padding:0 50px;
     overflow:hidden;
   }
-  .banner::after{
-    content:"";
-    position:absolute;
-    top:-160px; right:-220px;
-    width:520px; height:520px;
-    border-radius:50%;
-    border:70px solid rgba(255,102,0,0.08);
-  }
+  .banner::after{ display:none; }
 
   .text-col{ flex:0 0 430px; position:relative; z-index:2; }
   .badge{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }

@@ -130,6 +130,8 @@
           if(!container || !iframe) return;
           var w = container.offsetWidth || window.innerWidth;
           var s = w / 1400;
+          // En mobile ampliamos la escala para que el banner se vea más grande
+          if(w < 768){ s = s * 1.18; }
           iframe.style.transform = 'scale('+s+')';
           iframe.style.transformOrigin = 'top left';
           iframe.style.width = '1400px';
@@ -936,6 +938,33 @@
 
     setTimeout(init, 300);
     window.addEventListener('load', () => setTimeout(init, 100));
+  })();
+
+  // AUTOPLAY CARRUSEL PLANES — solo en mobile
+  (function(){
+    if(window.innerWidth > 768) return;
+    var grid = document.querySelector('.plans2-grid');
+    if(!grid) return;
+    var speed = 0.6; // px por frame — rápido pero legible
+    var paused = false;
+    var pos = 0;
+
+    // Al tocar pausa el scroll automático
+    grid.addEventListener('touchstart', function(){ paused = true; });
+    grid.addEventListener('touchend', function(){ setTimeout(function(){ paused = false; }, 2500); });
+
+    function autoScroll(){
+      if(!paused){
+        pos += speed;
+        // Cuando llega al final vuelve al inicio suavemente
+        if(pos >= grid.scrollWidth - grid.clientWidth){
+          pos = 0;
+        }
+        grid.scrollLeft = pos;
+      }
+      requestAnimationFrame(autoScroll);
+    }
+    setTimeout(autoScroll, 800);
   })();
   </script>
 
