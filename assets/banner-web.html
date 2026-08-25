@@ -26,7 +26,14 @@
     padding:0 50px;
     overflow:hidden;
   }
-  .banner::after{ display:none; }
+  .banner::after{ display:none; /* 
+    content:"";
+    position:absolute;
+    top:-160px; right:-220px;
+    width:520px; height:520px;
+    border-radius:50%;
+    border:70px solid rgba(255,102,0,0.08); */
+  }
 
   .text-col{ flex:0 0 430px; position:relative; z-index:2; }
   .badge{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }

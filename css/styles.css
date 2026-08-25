@@ -1300,3 +1300,44 @@ strong { color: var(--black); }
     flex-shrink: 0 !important;
   }
 }
+
+/* ================================================================
+   MOBILE FIXES v3 — Foto adjunta
+   ================================================================ */
+@media (max-width: 768px) {
+
+  /* NAV: logo más grande, línea más ajustada */
+  .nav { border-bottom: 1px solid var(--gray-border); }
+  .nav__inner {
+    padding: 0.4rem 0.9rem;
+    min-height: unset;
+  }
+  .nav__logo { height: 68px; }
+
+  /* BANNER HERO 2 y 4: ocupa todo el ancho sin márgenes */
+  .banner2-link {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+  }
+  .banner2-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    min-height: 180px;
+  }
+
+  /* BANNER WEB: sin espacio vacío debajo */
+  .hero-img {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    line-height: 0;
+  }
+  .hero-img > div {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
