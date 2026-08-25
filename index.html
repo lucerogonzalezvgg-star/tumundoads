@@ -140,6 +140,10 @@
           iframe.parentElement.style.width = '100%';
           iframe.parentElement.style.overflow = 'hidden';
           iframe.parentElement.style.position = 'relative';
+          iframe.parentElement.style.margin = '0';
+          iframe.parentElement.style.padding = '0';
+          iframe.parentElement.style.lineHeight = '0';
+          iframe.parentElement.style.fontSize = '0';
         }
         if(document.readyState === 'loading'){
           document.addEventListener('DOMContentLoaded', scaleBanner);

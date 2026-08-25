@@ -1341,3 +1341,48 @@ strong { color: var(--black); }
     padding-bottom: 0 !important;
   }
 }
+
+/* ================================================================
+   MOBILE FIXES v4 — espacio banner + banner2 bordes
+   ================================================================ */
+@media (max-width: 768px) {
+
+  /* Eliminar espacio blanco entre banner web y cinta de logos */
+  .hero-img {
+    display: block;
+    line-height: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .hero-img > div {
+    display: block;
+    line-height: 0;
+    font-size: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .hero-img > div > iframe {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Banner Hero 2 y 4: sin márgenes, hasta el borde */
+  .banner2-link {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+  }
+  .banner2-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+  }
+}
