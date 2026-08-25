@@ -1095,3 +1095,183 @@ strong { color: var(--black); }
 .plan2-btn--solid:hover { background:#e05e00; }
 @media (max-width:900px) { .plans2-grid { grid-template-columns:repeat(2,1fr) !important; } }
 @media (max-width:580px) { .plans2-grid { grid-template-columns:1fr !important; } }
+
+/* ================================================================
+   MOBILE ONLY — max-width 768px
+   NO toca nada del diseño desktop
+   ================================================================ */
+@media (max-width: 768px) {
+
+  /* ── NAV ── */
+  .nav__inner { padding: 0.7rem 1rem; }
+  .nav__logo { height: 52px; }
+  .btn--nav { font-size: 0.82rem; padding: 0.65rem 1rem; white-space: nowrap; }
+
+  /* ── BANNER ANIMADO (hero-img) ── */
+  /* El JS ya escala el iframe, solo aseguramos el contenedor */
+  .hero-img { display: block; line-height: 0; }
+  .hero-img > div { position: relative; width: 100%; overflow: hidden; }
+
+  /* ── BANNERS IMAGEN (banner2-img) ── */
+  /* Se ven muy pequeños → los agrandamos al 100% con altura mínima */
+  .banner2-link { display: block; width: 100%; }
+  .banner2-img { width: 100%; height: auto; min-height: 160px; object-fit: cover; }
+
+  /* ── CINTA DE LOGOS ── */
+  .logos-tape { padding: 1rem 0; }
+  .logos-tape__item { padding: 0 1.2rem; }
+  .logos-tape__item img { height: 32px; }
+
+  /* ── CARRUSEL FOTOS ── */
+  /* Imágenes que no se ven: aseguramos display y tamaño */
+  .carousel-inf { padding: 1.25rem 0; }
+  .carousel-inf__track { gap: 0.75rem; }
+  .carousel-inf__track img {
+    height: 200px;
+    width: auto;
+    border-radius: 8px;
+    display: block;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  /* ── FLIP CARDS (Lo que diferencia mi trabajo) ── */
+  /* El texto superpuesto en mobile: separamos frente y dorso */
+  .flip-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .flip-card { height: auto; min-height: 160px; perspective: none; }
+  .flip-inner {
+    position: relative;
+    transform: none !important;
+    transform-style: flat;
+    transition: none;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  /* En mobile: siempre mostramos el frente, al hacer click mostramos el dorso */
+  .flip-front {
+    position: relative;
+    inset: auto;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: none;
+    padding: 1.25rem;
+    min-height: 120px;
+    border-radius: 12px;
+  }
+  .flip-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 1.25rem;
+    border-radius: 12px;
+    justify-content: flex-start;
+    pointer-events: none;
+  }
+  .flip-card.flipped .flip-front { opacity: 0; }
+  .flip-card.flipped .flip-back { opacity: 1; pointer-events: auto; }
+  .flip-card.flipped .flip-inner { transform: none !important; }
+  .flip-front-num { font-size: 40px; opacity: 0.18; top: 0.75rem; left: 1rem; }
+  .flip-front-title { font-size: 0.95rem; }
+  .flip-front-hint { font-size: 0.72rem; }
+  .flip-back-title { font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .flip-back-text { font-size: 0.85rem; line-height: 1.6; }
+
+  /* ── CARDS 3D PROCESO ── */
+  .cards3d-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .cards3d-card { min-height: auto; }
+  .cards3d-content { min-height: auto; padding: 1.25rem; }
+  .cards3d-checks { opacity: 1; transform: none; }
+  .cards3d-num { font-size: 48px; }
+
+  /* ── PLANES — carrusel horizontal ── */
+  .plans2-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    gap: 0.85rem !important;
+    padding: 0 1rem 1rem !important;
+    margin: 0 -1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    grid-template-columns: unset !important;
+  }
+  .plans2-grid::-webkit-scrollbar { display: none; }
+  .plan2-card {
+    flex: 0 0 82vw !important;
+    max-width: 320px;
+    scroll-snap-align: center;
+    width: 82vw !important;
+  }
+  /* Hint de swipe */
+  .plans2-grid::before {
+    display: none;
+  }
+
+  /* ── TESTIMONIOS ── */
+  .testi-grid { grid-template-columns: 1fr !important; gap: 1rem; }
+
+  /* ── PILLARS ── */
+  .pillars__grid { grid-template-columns: 1fr; gap: 1rem; }
+  .pillars { padding: 3rem 1rem; }
+
+  /* ── PROMO BANNERS ── */
+  .promo-banner { padding: 1rem 1rem 0; }
+  .promo-banner__card {
+    grid-template-columns: 1fr !important;
+    padding: 1.5rem 1.25rem;
+    text-align: left;
+    gap: 1rem;
+  }
+  .promo-banner__visual { display: none !important; }
+  .promo-banner__title { font-size: 1.15rem; }
+  .promo-banner__sub { font-size: 0.85rem; margin-bottom: 1rem; }
+  .curso-chips { flex-wrap: wrap; }
+
+  /* ── SECCIONES GENERALES ── */
+  .testimonials { padding: 3rem 1rem; }
+  .cta-final { padding: 3rem 1rem; }
+  .cta-final__buttons { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .cta-final__buttons .btn { justify-content: center; width: 100%; }
+  .about { padding: 3rem 1rem; }
+  .about__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about__photo-col { position: static; max-width: 280px; margin: 0 auto; }
+  .section-title { font-size: 1.5rem !important; }
+  .proceso { padding: 3rem 1rem; }
+
+  /* ── FOOTER ── */
+  .footer__inner { flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+  .footer__logo { height: 80px; margin: 0 auto; }
+
+  /* ── MODAL PAGO ── */
+  .pay-modal { padding: 0.75rem; }
+  .pay-modal__box { padding: 1.25rem; max-width: 100%; border-radius: 14px; }
+  .pago-movil-dato { grid-template-columns: 1fr; gap: 0.3rem; }
+  .pago-movil-dato__valor { font-size: 0.88rem; word-break: break-all; }
+}
+
+/* ── Extra pequeños (iPhone SE, etc) ── */
+@media (max-width: 390px) {
+  .nav__logo { height: 44px; }
+  .plan2-card { flex: 0 0 88vw !important; width: 88vw !important; }
+  .carousel-inf__track img { height: 160px; }
+  .section-title { font-size: 1.3rem !important; }
+}
+
+/* Swipe hint planes: oculto en desktop, visible en mobile */
+.plans__swipe-hint { display: none; }
+@media (max-width: 768px) {
+  .plans__swipe-hint {
+    display: block;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #FF6600;
+    margin-bottom: 1rem;
+    letter-spacing: 0.03em;
+  }
+}

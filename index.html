@@ -128,17 +128,26 @@
           var container = document.querySelector('.hero-img');
           var iframe = document.getElementById('bannerIframe');
           if(!container || !iframe) return;
-          var w = container.getBoundingClientRect().width || window.innerWidth;
+          var w = container.offsetWidth || window.innerWidth;
           var s = w / 1400;
           iframe.style.transform = 'scale('+s+')';
           iframe.style.transformOrigin = 'top left';
-          iframe.parentElement.style.height = (400 * s) + 'px';
-          iframe.parentElement.style.paddingTop = '0';
+          iframe.style.width = '1400px';
+          iframe.style.height = '400px';
+          iframe.parentElement.style.height = Math.round(400 * s) + 'px';
+          iframe.parentElement.style.width = '100%';
+          iframe.parentElement.style.overflow = 'hidden';
+          iframe.parentElement.style.position = 'relative';
         }
-        scaleBanner();
-        window.addEventListener('resize', scaleBanner);
+        if(document.readyState === 'loading'){
+          document.addEventListener('DOMContentLoaded', scaleBanner);
+        } else {
+          scaleBanner();
+        }
         window.addEventListener('load', scaleBanner);
-        document.addEventListener('DOMContentLoaded', scaleBanner);
+        window.addEventListener('resize', scaleBanner);
+        // Re-escalar al orientar el dispositivo
+        window.addEventListener('orientationchange', function(){ setTimeout(scaleBanner, 200); });
       })();
     </script>
     <!-- CINTA DE LOGOS INFINITA -->
