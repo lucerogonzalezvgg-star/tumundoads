@@ -1491,3 +1491,45 @@ strong { color: var(--black); }
   /* Banner Hero 4: ocultar imagen en mobile (ya tiene banner-mobile en su lugar) */
   .banner4-desktop { display: none !important; }
 }
+
+/* ================================================================
+   MOBILE FIXES — nav sin línea, logo más grande, banners sin corte
+   ================================================================ */
+@media (max-width: 768px) {
+
+  /* NAV: sin línea gris, logo más grande, padding uniforme */
+  .nav { border-bottom: none !important; }
+  .nav__inner { padding: 0.75rem 1rem; }
+  .nav__logo { height: 75px; }
+
+  /* BANNER MOBILE PRINCIPAL: sin corte, completo */
+  .hero-mobile {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    overflow: hidden;
+  }
+  .hero-mobile iframe {
+    width: 100% !important;
+    display: block !important;
+    border: none !important;
+    overflow: hidden;
+  }
+
+  /* BANNER MOBILE EN LUGAR DEL HERO 4: sin corte */
+  .banner4-mobile {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    overflow: hidden;
+  }
+  .banner4-mobile iframe {
+    width: 100% !important;
+    display: block !important;
+    border: none !important;
+  }
+}
