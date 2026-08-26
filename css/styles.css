@@ -1412,3 +1412,45 @@ strong { color: var(--black); }
   .hero-mobile  { display: block !important; width:100%; line-height:0; margin:0; padding:0; }
   .hero-mobile iframe { width:100%; display:block; border:none; }
 }
+
+/* ================================================================
+   MOBILE: nuevos banners + banner2 más grande
+   ================================================================ */
+
+/* Banner hero 4: desktop oculto en mobile, mobile visible */
+.banner4-mobile { display: none; }
+.banner4-desktop { display: block; }
+
+@media (max-width: 768px) {
+  /* Banner 4: ocultar imagen, mostrar banner-mobile */
+  .banner4-desktop { display: none !important; }
+  .banner4-mobile {
+    display: block !important;
+    width: 100%;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .banner4-mobile iframe {
+    width: 100%;
+    display: block;
+    border: none;
+  }
+
+  /* Banner Hero 2: más grande, ocupa todo el ancho */
+  .banner2-link {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+  }
+  .banner2-img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    min-height: 220px;
+    object-fit: cover;
+    object-position: center;
+  }
+}

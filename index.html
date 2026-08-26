@@ -123,7 +123,7 @@
     </a>
     <!-- MOBILE -->
     <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-mobile">
-      <iframe src="assets/banner-mobile.html" scrolling="no" frameborder="0"
+      <iframe src="assets/banner-google-ads-mobile.html" scrolling="no" frameborder="0"
         id="bannerMobile" style="width:100%;border:none;display:block;pointer-events:none;"></iframe>
     </a>
     <script>
@@ -149,6 +149,11 @@
         }
         function scale(){
           if(window.innerWidth > 768){ scaleDesktop(); } else { scaleMobile(); }
+          // Ajustar también bannerMobile2 (banner-mobile en lugar del hero 4)
+          var mb2 = document.getElementById('bannerMobile2');
+          if(mb2 && window.innerWidth <= 768){
+            mb2.style.height = Math.round(mb2.offsetWidth * (480/420)) + 'px';
+          }
         }
         if(document.readyState === 'loading'){
           document.addEventListener('DOMContentLoaded', scale);
@@ -342,8 +347,14 @@
     </section>
 
     <!-- BANNER HERO 4 -->
-    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Vi%20tu%20p%C3%A1gina%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="banner2-link">
+    <!-- Desktop: imagen original -->
+    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Vi%20tu%20p%C3%A1gina%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="banner2-link banner4-desktop">
       <img src="assets/banner-hero4.png" alt="TuMundoAds" class="banner4-img"/>
+    </a>
+    <!-- Mobile: banner-mobile.html en lugar del hero 4 -->
+    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-mobile banner4-mobile">
+      <iframe src="assets/banner-mobile.html" scrolling="no" frameborder="0"
+        id="bannerMobile2" style="width:100%;border:none;display:block;pointer-events:none;"></iframe>
     </a>
 
     <section class="testimonials">
