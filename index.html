@@ -112,6 +112,40 @@
 
   <main>
 
+    <!-- Auto-alto real para banners mobile embebidos en iframe (reemplaza multiplicadores fijos) -->
+    <script>
+      function autoSizeMobileIframe(f, fallbackRatio){
+        function measure(){
+          try{
+            var doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
+            if(!doc) return false;
+            var h = Math.max(
+              doc.documentElement ? doc.documentElement.scrollHeight : 0,
+              doc.body ? doc.body.scrollHeight : 0
+            );
+            if(h > 0){ f.style.height = h + 'px'; return true; }
+          }catch(e){ /* cross-origin u otro error: se usa el fallback */ }
+          return false;
+        }
+        function resize(){
+          if(!measure()){
+            var w = f.offsetWidth;
+            f.style.height = Math.round(w * fallbackRatio) + 'px';
+          }
+        }
+        resize();
+        // Vuelve a medir por si tipografías/imagenes terminan de acomodar el layout
+        setTimeout(resize, 60);
+        setTimeout(resize, 300);
+        setTimeout(resize, 800);
+        if(!f.__autoSizeBound){
+          f.__autoSizeBound = true;
+          window.addEventListener('resize', resize);
+          window.addEventListener('orientationchange', function(){ setTimeout(resize, 200); });
+        }
+      }
+    </script>
+
         <!-- BANNER HERO 1 -->
     <!-- DESKTOP -->
     <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-desktop">
@@ -125,7 +159,7 @@
     <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-mobile">
       <iframe src="assets/banner-google-ads-mobile.html" scrolling="no" frameborder="0"
         id="bannerMobile" style="width:100%;border:none;display:block;pointer-events:none;"
-        onload="(function(f){var w=f.offsetWidth;f.style.height=Math.round(w*1.39)+'px';})(this)"></iframe>
+        onload="autoSizeMobileIframe(this, 1.39)"></iframe>
     </a>
     <script>
       (function(){
@@ -348,7 +382,7 @@
     <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-mobile banner4-mobile">
       <iframe src="assets/banner-mobile.html" scrolling="no" frameborder="0"
         id="bannerMobile2" style="width:100%;border:none;display:block;pointer-events:none;"
-        onload="(function(f){var w=f.offsetWidth;f.style.height=Math.round(w*0.59)+'px';})(this)"></iframe>
+        onload="autoSizeMobileIframe(this, 0.59)"></iframe>
     </a>
 
     <section class="testimonials">
