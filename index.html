@@ -145,17 +145,17 @@
         function scaleMobile(){
           var mb = document.getElementById('bannerMobile');
           if(!mb) return;
-          // 542px alto para 390px ancho + 15% margen de seguridad
           var w = mb.offsetWidth || window.innerWidth;
-          mb.style.height = Math.round(w * (542/390) * 1.15) + 'px';
+          // 620px mínimo declarado en el banner + escala proporcional
+          mb.style.height = Math.round(w * (620/390)) + 'px';
         }
         function scale(){
           if(window.innerWidth > 768){ scaleDesktop(); } else { scaleMobile(); }
           var mb2 = document.getElementById('bannerMobile2');
           if(mb2 && window.innerWidth <= 768){
-            // 230px alto para 390px ancho + 15% margen
             var w2 = mb2.offsetWidth || window.innerWidth;
-            mb2.style.height = Math.round(w2 * (230/390) * 1.15) + 'px';
+            // 260px mínimo declarado en el banner + escala proporcional
+            mb2.style.height = Math.round(w2 * (260/390)) + 'px';
           }
         }        if(document.readyState === 'loading'){
           document.addEventListener('DOMContentLoaded', scale);
