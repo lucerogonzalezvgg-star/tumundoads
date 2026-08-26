@@ -1342,3 +1342,15 @@ strong { color: var(--black); }
     padding: 0 !important;
   }
 }
+
+/* MOBILE: banner 4 visible completo */
+@media (max-width: 768px) {
+  .banner4-img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: contain !important;
+  }
+}
