@@ -145,21 +145,17 @@
         function scaleMobile(){
           var mb = document.getElementById('bannerMobile');
           if(!mb) return;
-          try {
-            var h = mb.contentWindow.document.documentElement.scrollHeight;
-            if(h > 100) { mb.style.height = h + 'px'; return; }
-          } catch(e){}
-          mb.style.height = Math.round((mb.offsetWidth || window.innerWidth) * 1.6) + 'px';
+          // Proporción real medida: 542px alto para 390px ancho
+          var w = mb.offsetWidth || window.innerWidth;
+          mb.style.height = Math.round(w * (542/390)) + 'px';
         }
         function scale(){
           if(window.innerWidth > 768){ scaleDesktop(); } else { scaleMobile(); }
           var mb2 = document.getElementById('bannerMobile2');
           if(mb2 && window.innerWidth <= 768){
-            try {
-              var h2 = mb2.contentWindow.document.documentElement.scrollHeight;
-              if(h2 > 100) { mb2.style.height = h2 + 'px'; return; }
-            } catch(e){}
-            mb2.style.height = Math.round((mb2.offsetWidth || window.innerWidth) * 1.6) + 'px';
+            // Proporción real medida: 230px alto para 390px ancho
+            var w2 = mb2.offsetWidth || window.innerWidth;
+            mb2.style.height = Math.round(w2 * (230/390)) + 'px';
           }
         }        if(document.readyState === 'loading'){
           document.addEventListener('DOMContentLoaded', scale);
