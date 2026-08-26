@@ -175,6 +175,6 @@
 
 </div>
 
-<script>window.addEventListener("load",function(){var h=document.documentElement.scrollHeight||document.body.scrollHeight;parent.postMessage({iframeHeight:h},"*");});</script>
+<script>window.addEventListener("load",function(){var el=document.querySelector(".banner");var h=el?el.getBoundingClientRect().height:document.body.scrollHeight;parent.postMessage({iframeHeight:Math.ceil(h)+40},"*");});</script>
 </body>
 </html>
