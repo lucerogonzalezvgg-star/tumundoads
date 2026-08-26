@@ -1465,13 +1465,6 @@ strong { color: var(--black); }
 
 @media (max-width: 768px) {
 
-  /* Banner hero principal: sin corte, contener imagen completa */
-  .hero-mobile iframe {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 380px;
-  }
-
   /* Banner 2: ocultar desktop, mostrar mobile */
   .banner2-desktop { display: none !important; }
   .banner2-mobile {
@@ -1515,7 +1508,6 @@ strong { color: var(--black); }
     width: 100% !important;
     display: block !important;
     border: none !important;
-    overflow: hidden;
   }
 
   /* BANNER MOBILE EN LUGAR DEL HERO 4: sin corte */

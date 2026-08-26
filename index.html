@@ -129,7 +129,6 @@
     </a>
     <script>
       (function(){
-        // DESKTOP: escalar banner-web
         function scaleDesktop(){
           var container = document.querySelector('.hero-desktop');
           var iframe = document.getElementById('bannerIframe');
@@ -141,30 +140,10 @@
           iframe.style.transformOrigin = 'top left';
           box.style.height = Math.round(400 * s) + 'px';
         }
-        // MOBILE: ajustar altura banner-mobile
-        function scaleMobile(){
-          var mb = document.getElementById('bannerMobile');
-          if(!mb) return;
-          var w = mb.offsetWidth || window.innerWidth;
-          mb.style.height = Math.round(w * (620/390)) + 'px';
-        }
         function scale(){
-          if(window.innerWidth > 768){ scaleDesktop(); } else { scaleMobile(); }
-          var mb2 = document.getElementById('bannerMobile2');
-          if(mb2 && window.innerWidth <= 768){
-            var w2 = mb2.offsetWidth || window.innerWidth;
-            mb2.style.height = Math.round(w2 * (260/390)) + 'px';
-          }
+          if(window.innerWidth > 768){ scaleDesktop(); }
         }
-        // Recibir altura real desde cada iframe
-        window.addEventListener('message', function(e){
-          if(!e.data || !e.data.iframeHeight) return;
-          var h = e.data.iframeHeight;
-          var mb = document.getElementById('bannerMobile');
-          var mb2 = document.getElementById('bannerMobile2');
-          if(mb && e.source === mb.contentWindow){ mb.style.height = h + 'px'; }
-          if(mb2 && e.source === mb2.contentWindow){ mb2.style.height = h + 'px'; }
-        });        if(document.readyState === 'loading'){
+        if(document.readyState === 'loading'){
           document.addEventListener('DOMContentLoaded', scale);
         } else { scale(); }
         window.addEventListener('load', scale);
@@ -172,7 +151,7 @@
         window.addEventListener('orientationchange', function(){ setTimeout(scale, 200); });
       })();
     </script>
-    <!-- CINTA DE LOGOS INFINITA -->
+        <!-- CINTA DE LOGOS INFINITA -->
     <div class="logos-tape" aria-label="Plataformas que gestionamos">
       <div class="logos-tape__track">
         <div class="logos-tape__item"><img src="assets/google.png" alt="Google Ads"/></div>
