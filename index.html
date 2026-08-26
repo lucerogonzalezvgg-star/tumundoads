@@ -146,7 +146,6 @@
           var mb = document.getElementById('bannerMobile');
           if(!mb) return;
           var w = mb.offsetWidth || window.innerWidth;
-          // 620px mínimo declarado en el banner + escala proporcional
           mb.style.height = Math.round(w * (620/390)) + 'px';
         }
         function scale(){
@@ -154,10 +153,18 @@
           var mb2 = document.getElementById('bannerMobile2');
           if(mb2 && window.innerWidth <= 768){
             var w2 = mb2.offsetWidth || window.innerWidth;
-            // 260px mínimo declarado en el banner + escala proporcional
             mb2.style.height = Math.round(w2 * (260/390)) + 'px';
           }
-        }        if(document.readyState === 'loading'){
+        }
+        // Recibir altura real desde cada iframe
+        window.addEventListener('message', function(e){
+          if(!e.data || !e.data.iframeHeight) return;
+          var h = e.data.iframeHeight;
+          var mb = document.getElementById('bannerMobile');
+          var mb2 = document.getElementById('bannerMobile2');
+          if(mb && e.source === mb.contentWindow){ mb.style.height = h + 'px'; }
+          if(mb2 && e.source === mb2.contentWindow){ mb2.style.height = h + 'px'; }
+        });        if(document.readyState === 'loading'){
           document.addEventListener('DOMContentLoaded', scale);
         } else { scale(); }
         window.addEventListener('load', scale);
