@@ -145,25 +145,21 @@
         function scaleMobile(){
           var mb = document.getElementById('bannerMobile');
           if(!mb) return;
-          // Intentar leer altura real del contenido del iframe
           try {
-            var h = mb.contentWindow.document.body.scrollHeight;
-            if(h && h > 100) { mb.style.height = h + 'px'; return; }
+            var h = mb.contentWindow.document.documentElement.scrollHeight;
+            if(h > 100) { mb.style.height = h + 'px'; return; }
           } catch(e){}
-          // Fallback: proporción del diseño 420×720
-          var w = mb.offsetWidth || window.innerWidth;
-          mb.style.height = Math.round(w * (720/420)) + 'px';
+          mb.style.height = Math.round((mb.offsetWidth || window.innerWidth) * 1.6) + 'px';
         }
         function scale(){
           if(window.innerWidth > 768){ scaleDesktop(); } else { scaleMobile(); }
           var mb2 = document.getElementById('bannerMobile2');
           if(mb2 && window.innerWidth <= 768){
             try {
-              var h2 = mb2.contentWindow.document.body.scrollHeight;
-              if(h2 && h2 > 100) { mb2.style.height = h2 + 'px'; return; }
+              var h2 = mb2.contentWindow.document.documentElement.scrollHeight;
+              if(h2 > 100) { mb2.style.height = h2 + 'px'; return; }
             } catch(e){}
-            var w2 = mb2.offsetWidth || window.innerWidth;
-            mb2.style.height = Math.round(w2 * (720/420)) + 'px';
+            mb2.style.height = Math.round((mb2.offsetWidth || window.innerWidth) * 1.6) + 'px';
           }
         }        if(document.readyState === 'loading'){
           document.addEventListener('DOMContentLoaded', scale);
