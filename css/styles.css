@@ -1454,3 +1454,40 @@ strong { color: var(--black); }
     object-position: center;
   }
 }
+
+/* ================================================================
+   MOBILE FIXES — banner2 nuevo, hero4 oculto, hero principal sin corte
+   ================================================================ */
+
+/* Banner 2: desktop visible, mobile oculto por defecto */
+.banner2-mobile { display: none; }
+.banner2-desktop { display: block; }
+
+@media (max-width: 768px) {
+
+  /* Banner hero principal: sin corte, contener imagen completa */
+  .hero-mobile iframe {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 380px;
+  }
+
+  /* Banner 2: ocultar desktop, mostrar mobile */
+  .banner2-desktop { display: none !important; }
+  .banner2-mobile {
+    display: block !important;
+    width: 100%;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .banner2-mobile .banner2-img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+  }
+
+  /* Banner Hero 4: ocultar imagen en mobile (ya tiene banner-mobile en su lugar) */
+  .banner4-desktop { display: none !important; }
+}
