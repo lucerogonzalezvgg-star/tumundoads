@@ -113,7 +113,8 @@
   <main>
 
         <!-- BANNER HERO 1 — Web Banner Animado -->
-    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img">
+    <!-- DESKTOP: banner web con iframe escalado -->
+    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-img--desktop">
       <div style="position:relative;width:100%;overflow:hidden;height:400px;" id="bannerContainer">
         <iframe src="assets/banner-web.html" scrolling="no" frameborder="0"
           style="position:absolute;top:0;left:0;width:1400px;height:400px;border:none;pointer-events:none;
@@ -121,6 +122,12 @@
                  transform:scale(var(--bscale,1));"
           id="bannerIframe" title="Banner Creación de Páginas Web"></iframe>
       </div>
+    </a>
+    <!-- MOBILE: banner diseñado para celular -->
+    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-img--mobile">
+      <iframe src="assets/banner-mobile.html" scrolling="no" frameborder="0"
+        style="width:100%;border:none;display:block;pointer-events:none;"
+        id="bannerMobile" title="Banner Creación de Páginas Web"></iframe>
     </a>
     <script>
       (function(){
@@ -154,6 +161,20 @@
         window.addEventListener('resize', scaleBanner);
         // Re-escalar al orientar el dispositivo
         window.addEventListener('orientationchange', function(){ setTimeout(scaleBanner, 200); });
+
+        // BANNER MOBILE: ajustar altura del iframe según contenido
+        function scaleMobileBanner(){
+          var mb = document.getElementById('bannerMobile');
+          if(!mb || window.innerWidth > 768) return;
+          // El banner mobile tiene max-width 420px y padding interno
+          // La altura se calcula proporcionalmente al ancho real
+          var w = mb.offsetWidth;
+          var h = Math.round(w * 1.1); // proporción aproximada del diseño
+          mb.style.height = h + 'px';
+        }
+        scaleMobileBanner();
+        window.addEventListener('resize', scaleMobileBanner);
+        window.addEventListener('load', scaleMobileBanner);
       })();
     </script>
     <!-- CINTA DE LOGOS INFINITA -->
