@@ -146,45 +146,44 @@
       }
     </script>
 
-        <!-- BANNER HERO 1 -->
-    <!-- DESKTOP -->
-    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-desktop">
+    <!-- BANNER PRINCIPAL (desktop) — Google Ads / Monitor+Celular -->
+    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-desktop" id="heroDesktopA">
       <div style="position:relative;width:100%;overflow:hidden;height:400px;" id="bannerContainer">
-        <iframe src="assets/banner-web.html" scrolling="no" frameborder="0"
+        <iframe src="assets/banner-hero4-google-ads.html" scrolling="no" frameborder="0"
           style="position:absolute;top:0;left:0;width:1400px;height:400px;border:none;pointer-events:none;transform-origin:top left;"
-          id="bannerIframe" title="Banner Web"></iframe>
+          id="bannerIframe" title="Banner Google Ads"></iframe>
       </div>
-    </a>
-    <!-- MOBILE -->
-    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-mobile">
-      <iframe src="assets/banner-google-ads-mobile.html" scrolling="no" frameborder="0"
-        id="bannerMobile" style="width:100%;border:none;display:block;pointer-events:none;"
-        onload="autoSizeMobileIframe(this, 1.39)"></iframe>
     </a>
     <script>
       (function(){
-        function scaleDesktop(){
-          var container = document.querySelector('.hero-desktop');
-          var iframe = document.getElementById('bannerIframe');
-          var box = document.getElementById('bannerContainer');
-          if(!container || !iframe || !box) return;
-          var w = container.offsetWidth || window.innerWidth;
+        function scaleBanner(containerEl, iframe, box){
+          if(!containerEl || !iframe || !box) return;
+          var w = containerEl.offsetWidth || window.innerWidth;
           var s = w / 1400;
           iframe.style.transform = 'scale('+s+')';
           iframe.style.transformOrigin = 'top left';
           box.style.height = Math.round(400 * s) + 'px';
         }
-        function scale(){
-          if(window.innerWidth > 768){ scaleDesktop(); }
+        function scaleAll(){
+          if(window.innerWidth > 768){
+            scaleBanner(document.getElementById('heroDesktopA'), document.getElementById('bannerIframe'), document.getElementById('bannerContainer'));
+            scaleBanner(document.getElementById('heroDesktopB'), document.getElementById('bannerIframeOld'), document.getElementById('bannerContainerOld'));
+          }
         }
         if(document.readyState === 'loading'){
-          document.addEventListener('DOMContentLoaded', scale);
-        } else { scale(); }
-        window.addEventListener('load', scale);
-        window.addEventListener('resize', scale);
-        window.addEventListener('orientationchange', function(){ setTimeout(scale, 200); });
+          document.addEventListener('DOMContentLoaded', scaleAll);
+        } else { scaleAll(); }
+        window.addEventListener('load', scaleAll);
+        window.addEventListener('resize', scaleAll);
+        window.addEventListener('orientationchange', function(){ setTimeout(scaleAll, 200); });
       })();
     </script>
+    <!-- BANNER HERO 1 (mobile) -->
+    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-mobile">
+      <iframe src="assets/banner-google-ads-mobile.html" scrolling="no" frameborder="0"
+        id="bannerMobile" style="width:100%;border:none;display:block;pointer-events:none;"
+        onload="autoSizeMobileIframe(this, 1.39)"></iframe>
+    </a>
         <!-- CINTA DE LOGOS INFINITA -->
     <div class="logos-tape" aria-label="Plataformas que gestionamos">
       <div class="logos-tape__track">
@@ -213,6 +212,11 @@
         <div class="logos-tape__item"><img src="assets/analitytics.png" alt="Google Analytics"/></div>
       </div>
     </div>
+
+    <!-- BANNER HERO 4 (desktop) — OCULTO por pedido del cliente -->
+    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Vi%20tu%20p%C3%A1gina%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="banner2-link banner4-desktop" style="display:none;">
+      <img src="assets/banner-hero4.png" alt="TuMundoAds" class="banner4-img"/>
+    </a>
 
     <section class="pillars">
       <div class="container">
@@ -373,12 +377,16 @@
       </div>
     </section>
 
-    <!-- BANNER HERO 4 -->
-    <!-- Desktop: imagen original -->
-    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Vi%20tu%20p%C3%A1gina%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="banner2-link banner4-desktop">
-      <img src="assets/banner-hero4.png" alt="TuMundoAds" class="banner4-img"/>
+    <!-- BANNER SECUNDARIO (desktop) — el que antes era el principal, ahora debajo de "Cómo trabajamos" -->
+    <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-img hero-desktop" id="heroDesktopB">
+      <div style="position:relative;width:100%;overflow:hidden;height:400px;" id="bannerContainerOld">
+        <iframe src="assets/banner-web.html" scrolling="no" frameborder="0"
+          style="position:absolute;top:0;left:0;width:1400px;height:400px;border:none;pointer-events:none;transform-origin:top left;"
+          id="bannerIframeOld" title="Banner Web"></iframe>
+      </div>
     </a>
-    <!-- Mobile: banner-mobile.html en lugar del hero 4 -->
+
+    <!-- BANNER HERO 4 (mobile) -->
     <a href="https://wa.me/5491127012643?text=Hola%20Lucero!%20Quiero%20adquirir%20una%20Landing%20Page%20profesional." onclick="return gtag_report_conversion('https://wa.me/5491127012643');" target="_blank" rel="noopener" class="hero-mobile banner4-mobile">
       <iframe src="assets/banner-mobile.html" scrolling="no" frameborder="0"
         id="bannerMobile2" style="width:100%;border:none;display:block;pointer-events:none;"

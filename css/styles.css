@@ -35,7 +35,7 @@ strong { color: var(--black); }
 .btn--lg { font-size: 1rem; padding: 1rem 2rem; }
 
 /* NAV */
-.nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-border); }
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: none; }
 .nav__inner { max-width: 100%; margin: 0; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
 .nav__logo { height: 195px; width: auto; }
 
